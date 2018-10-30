@@ -2,13 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const path=require('path');
 var router=express.Router();
 //Port number
-const port = 3000;
+const port = process.env.PORT||3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 const request = require('request');
+app.use(express.static(path.join(__dirname,'public')));
 
 app.get('/get1',function(req,resp,next){
     console.log(req.query.url);
